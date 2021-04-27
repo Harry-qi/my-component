@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Lltbale></Lltbale>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Lltbale from './components/ll-table'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Lltbale
   }
 }
 </script>
