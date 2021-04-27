@@ -8,7 +8,9 @@ import {
   Loading,
   Select,
   Option,
-  Button
+  Button,
+  link,
+  popconfirm
 } from 'element-ui'
 import App from './App.vue'
 
@@ -21,8 +23,11 @@ Vue.use(Pagination)
 Vue.use(Select)
 Vue.use(Option)
 Vue.use(Button)
+Vue.use(link)
+Vue.use(popconfirm)
 Vue.prototype.$message = Message
 Vue.prototype.$loading = Loading.service
+Vue.prototype.$ELEMENT = { size: 'small' }
 
 Vue.config.productionTip = false
 

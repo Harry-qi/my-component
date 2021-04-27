@@ -16,6 +16,7 @@ module.exports = {
   plugins: ['vue'],
   rules: {
     'import/extensions': 'off',
-    'import/no-unresolved': 'off'
+    'import/no-unresolved': 'off',
+    'no-console': 'off'
   }
 }
