@@ -15,6 +15,7 @@ import {
 import App from './App.vue'
 
 import 'element-ui/lib/theme-chalk/index.css'
+import router from './router.js'
 
 Vue.use(Table)
 Vue.use(TableColumn)
@@ -32,5 +33,6 @@ Vue.prototype.$ELEMENT = { size: 'small' }
 Vue.config.productionTip = false
 
 new Vue({
-  render: (h) => h(App)
+  render: (h) => h(App),
+  router
 }).$mount('#app')
