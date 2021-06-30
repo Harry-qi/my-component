@@ -1,6 +1,12 @@
 <template>
   <div>
-    <ll-table :data="tableData" :columns="columns" @getData="getData">
+    <ll-table
+      :data="tableData"
+      :columns="columns"
+      @getData="getData"
+      :pagination="pagination"
+      @change="changeTablePage"
+    >
       <template v-slot:search>
         <el-input v-model="word"></el-input>
         <el-button @click="getData">搜索</el-button>
@@ -47,12 +53,17 @@ export default {
     return {
       columns,
       tableData: [],
-      word: '1'
+      word: '1',
+      pagination: {}
     }
   },
   methods: {
-    getData() {
-      fetch(`http://jsonplaceholder.typicode.com/posts/${this.word}/comments`)
+    changeTablePage(pagination) {
+      console.log(pagination)
+      this.pagination = pagination
+    },
+    getData(parmas) {
+      fetch(`http://jsonplaceholder.typicode.com/posts/${this.word}/comments`, parmas)
         .then((response) => response.json())
         .then((data) => {
           this.tableData = data
@@ -60,6 +71,7 @@ export default {
     },
     del(id) {
       console.log(id)
+      this.getData(this.pagination)
     }
   }
 }
