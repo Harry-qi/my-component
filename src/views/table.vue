@@ -53,14 +53,17 @@ export default {
     return {
       columns,
       tableData: [],
-      word: '1',
+      word: '',
       pagination: {}
     }
   },
   methods: {
     changeTablePage(pagination) {
-      console.log(pagination)
       this.pagination = pagination
+      this.getData({
+        ...this.pagination,
+        word: this.word
+      })
     },
     getData(parmas) {
       fetch(`http://jsonplaceholder.typicode.com/posts/${this.word}/comments`, parmas)
