@@ -1,12 +1,6 @@
 <template>
   <div>
-    <ll-table
-      :data="tableData"
-      :columns="columns"
-      @getData="getData"
-      :pagination="pagination"
-      @change="changeTablePage"
-    >
+    <ll-table :data="tableData" :columns="columns" @getData="getData" @change="changeTablePage">
       <template v-slot:search>
         <el-input v-model="word"></el-input>
         <el-button @click="getData">搜索</el-button>
@@ -53,15 +47,17 @@ export default {
     return {
       columns,
       tableData: [],
-      word: '',
-      pagination: {}
+      word: '1',
+      query: {}
     }
   },
   methods: {
     changeTablePage(pagination) {
-      this.pagination = pagination
+      this.query = {
+        ...pagination
+      }
       this.getData({
-        ...this.pagination,
+        ...this.query,
         word: this.word
       })
     },
@@ -74,7 +70,7 @@ export default {
     },
     del(id) {
       console.log(id)
-      this.getData(this.pagination)
+      this.getData(this.query)
     }
   }
 }

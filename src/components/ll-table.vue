@@ -80,10 +80,7 @@ export default {
       type: Object,
       default() {
         return {
-          layout: {
-            type: String,
-            default: 'total, sizes, prev, pager, next'
-          },
+          layout: 'total, sizes, prev, pager, next',
           page: 1,
           pageSizes: [10, 20, 30],
           total: 0
@@ -96,7 +93,7 @@ export default {
       total: 0,
       query: {
         page: this.pagination.page,
-        pageSize: this.pagination.pageSizes
+        pageSize: this.pagination.pageSizes[0]
       }
     }
   },
