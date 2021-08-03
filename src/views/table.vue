@@ -2,8 +2,8 @@
   <div>
     <ll-table :data="tableData" :columns="columns" @getData="getData" @change="changeTablePage">
       <template v-slot:search>
-        <el-input v-model="word"></el-input>
-        <el-button @click="getData">搜索</el-button>
+        <el-input v-model="query.word"></el-input>
+        <el-button @click="getData(query)">搜索</el-button>
       </template>
       <template v-slot:name="{ row }"> {{ row.id }}--{{ row.postId }} </template>
       <template v-slot:action="{ row }">
@@ -47,22 +47,29 @@ export default {
     return {
       columns,
       tableData: [],
-      word: '1',
-      query: {}
+      query: {
+        word: '1',
+        page: 1,
+        pageSize: 10
+      }
     }
   },
   methods: {
-    changeTablePage(pagination) {
-      this.query = {
-        ...pagination
-      }
-      this.getData({
-        ...this.query,
-        word: this.word
-      })
+    changeTablePage({ page, pageSize }) {
+      this.query.page = page
+      this.query.pageSize = pageSize
+      this.getData(this.query)
     },
     getData(parmas) {
-      fetch(`http://jsonplaceholder.typicode.com/posts/${this.word}/comments`, parmas)
+      const query = {
+        ...this.query,
+        ...parmas
+      }
+      fetch(`http://jsonplaceholder.typicode.com/posts/${this.query.word}/comments`, {
+        // 传参
+        // method: 'POST',
+        // body: JSON.stringify(query)
+      })
         .then((response) => response.json())
         .then((data) => {
           this.tableData = data
